@@ -2,17 +2,10 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-  <title>EMP Defense</title>
-  <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
 	<script defer src="https://cdn.aerisapi.com/sdk/js/1.8.0/aerisweather.min.js"></script>
 	<link rel="stylesheet" href="https://cdn.aerisapi.com/sdk/js/1.8.0/aerisweather.css">
 	<style>
- 		#map {
-			position: absolute;
-      top: 0;
-      bottom: 0;
-      width: 100%;
-  		}
+ 		#map { position: absolute; top: 0; bottom: 0; width: 100%; }
   	</style>
 </head>
 <body>		
@@ -29,11 +22,11 @@ window.addEventListener('load', () => {
 		const app = new apps.InteractiveMapApp(document.getElementById('map'), {
             map: {
                 strategy: "mapbox",
-                accessToken: "pk.eyJ1IjoiZHNjaHV0dGVyODYiLCJhIjoiY2xpNWtiNzlhMDR5bDNsbXBrdHZqaTFsdSJ9.AFqJmapzjF4jgElf9E4E8g",
-                zoom: 3.4952905352395685,
+                accessToken: "pk.eyJ1IjoiZHNjaHV0dGVyODYiLCJhIjoiY2xoZjhyNDhvMW5zYzNtcGhzMmZ5dmxkYSJ9.ajgjIqYk-AJglDDhc3jeGw",
+                zoom: 4.01093342942119,
                 center: {
-                    lat: 38.3017,
-                    lon: -99.0328
+                    lat: 39.1542,
+                    lon: -86.9661
                 },
                 timeline: {
                     from: -7200,
@@ -43,26 +36,20 @@ window.addEventListener('load', () => {
             panels: {
                 layers: {
                     buttons: [{
-                            title: "Lightning Strikes",
-                            value: "lightning-strikes"
+                            title: "Terrain",
+                            value: "terrain"
                         },{
-                            title: "Lightning All",
-                            value: "lightning-all"
+                            title: "Lightning All - 15m",
+                            value: "lightning-all-15m"
                         },{
                             title: "Lightning Strike Density",
                             value: "lightning-strike-density"
-                        },{
-                            title: "Stormcells",
-                            value: "stormcells"
-                        },{
-                            title: "Fires - Icons",
-                            value: "fires-obs-icons"
                         },{
                             title: "Fires Outlook (Dry Lightning)",
                             value: "fires-dryltg-outlook"
                         }],
                     enabled: true,
-                    toggleable: true,
+                    toggleable: false,
                     position: {
                         pin: "topright",
                         translate: {
@@ -72,19 +59,19 @@ window.addEventListener('load', () => {
                     }
                 },
                 timeline: {
-                    enabled: false,
-                    toggleable: true,
+                    enabled: true,
+                    toggleable: false,
                     position: {
-                        pin: "bottomleft",
+                        pin: "bottom",
                         translate: {
-                            x: 40,
+                            x: 0,
                             y: -10
                         }
                     }
                 },
                 search: {
-                    enabled: true,
-                    toggleable: true,
+                    enabled: false,
+                    toggleable: false,
                     position: {
                         pin: "top",
                         translate: {
@@ -94,7 +81,7 @@ window.addEventListener('load', () => {
                     }
                 },
                 legends: {
-                    enabled: true,
+                    enabled: false,
                     toggleable: true,
                     position: {
                         pin: "bottomright",
@@ -124,6 +111,25 @@ window.addEventListener('load', () => {
 				app.showInfoAtCoord(e.data.coord, 'localweather', 'Local Weather');
 			});
 
+			// select initial layers
+			app.map.addLayers(['terrain', 'lightning-all-15m']);
+			// load in MapsGL sdk and set up relevant layer controls
+			aeris.mapsgl(app, {
+				version: '1.1.0',
+				layers: [{
+                        title: "Stormcells",
+                        value: "stormcells"
+                    },{
+                        title: "Storm Reports",
+                        value: "stormreports"
+                    },{
+                        title: "Fires",
+                        value: "fires-obs"
+                    }]
+			}).then(({controller, mapsgl }) => {
+				controller.addDataInspectorControl({ event: 'move'});
+				
+			});
 		});
 		
 		
