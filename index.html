@@ -43,9 +43,6 @@ window.addEventListener('load', () => {
             panels: {
                 layers: {
                     buttons: [{
-                            title: "Blue Marble",
-                            value: "blue-marble"
-                        },{
                             title: "Lightning Strikes",
                             value: "lightning-strikes"
                         },{
@@ -127,8 +124,6 @@ window.addEventListener('load', () => {
 				app.showInfoAtCoord(e.data.coord, 'localweather', 'Local Weather');
 			});
 
-			// select initial layers
-			app.map.addLayers(['blue-marble']);
 		});
 		
 		
