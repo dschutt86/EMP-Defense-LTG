@@ -5,11 +5,8 @@
 	<script defer src="https://cdn.aerisapi.com/sdk/js/1.8.0/aerisweather.min.js"></script>
 	<link rel="stylesheet" href="https://cdn.aerisapi.com/sdk/js/1.8.0/aerisweather.css">
 	<style>
- 		#map { 			
-			height: 600px;
-			width: 900px;
-    		        margin: 30px auto; 
-		}
+ 		#map { position: absolute; top: 0; bottom: 0; width: 100%;
+  		}
   	</style>
 </head>
 <body>		
@@ -19,18 +16,18 @@
 <script>	 
 window.addEventListener('load', () => { 
 		
-	const aeris = new AerisWeather('drrm1Tihna8sxWcQM9C5D', 'nfMfFk66EBeo4I6IjJTbhynpoXReetwk8OxdusjG');	
+	const aeris = new AerisWeather('drrm1Tihna8sxWcQM9C5D', 'tLhdrLVr9wLEoEDA9hcfJzcr4RbvS0hCjrPUtsGo');	
 	const utils = aeris.utils;
 
 	aeris.apps().then((apps) => {
 		const app = new apps.InteractiveMapApp(document.getElementById('map'), {
             map: {
-                strategy: "mapbox",
-                accessToken: "pk.eyJ1IjoiZHNjaHV0dGVyODYiLCJhIjoiY2xoZjhyNDhvMW5zYzNtcGhzMmZ5dmxkYSJ9.ajgjIqYk-AJglDDhc3jeGw",
-                zoom: 4.01093342942119,
+                strategy: "google",
+                accessToken: "AIzaSyBSNO2r4u6KDQM2SuKdVi4In_AbWfH8tFE",
+                zoom: 4,
                 center: {
-                    lat: 39.1542,
-                    lon: -86.9661
+                    lat: 38.6016,
+                    lon: -93.5498
                 },
                 timeline: {
                     from: -7200,
@@ -40,14 +37,20 @@ window.addEventListener('load', () => {
             panels: {
                 layers: {
                     buttons: [{
-                            title: "Lightning All - 15m",
-                            value: "lightning-all-15m"
+                            title: "Lightning Strikes",
+                            value: "lightning-strikes"
+                        },{
+                            title: "Lightning Flash",
+                            value: "lightning-flash"
                         },{
                             title: "Lightning Strike Density",
                             value: "lightning-strike-density"
                         },{
-                            title: "Fires Outlook (Dry Lightning)",
-                            value: "fires-dryltg-outlook"
+                            title: "Lightning All",
+                            value: "lightning-all"
+                        },{
+                            title: "Fires - Points",
+                            value: "fires-obs-points"
                         }],
                     enabled: true,
                     toggleable: false,
@@ -113,19 +116,13 @@ window.addEventListener('load', () => {
 			});
 
 			// select initial layers
-			app.map.addLayers(['terrain', 'lightning-all-15m']);
+			app.map.addLayers(['lightning-strikes']);
 			// load in MapsGL sdk and set up relevant layer controls
 			aeris.mapsgl(app, {
 				version: '1.1.0',
 				layers: [{
-                        title: "Stormcells",
-                        value: "stormcells"
-                    },{
-                        title: "Storm Reports",
-                        value: "stormreports"
-                    },{
-                        title: "Fires",
-                        value: "fires-obs"
+                        title: "Radar",
+                        value: "radar"
                     }]
 			}).then(({controller, mapsgl }) => {
 				controller.addDataInspectorControl({ event: 'move'});
