@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <title>EMP Lightning Defense</title>
+    <title>AerisWeather Map</title>
     <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
 
     <link href="https://api.tiles.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.css" rel="stylesheet" />
@@ -28,7 +28,16 @@
         });
 
         map.on('load', function () {
-            map.addSource('aerisweather-layers', {
+           map.addSource('mapbox-dem', {
+            'type': 'raster-dem',
+            'url': 'mapbox://mapbox.mapbox-terrain-dem-v1',
+            'tileSize': 512,
+            'maxzoom': 14
+        });
+        // add the DEM source as a terrain layer with exaggerated height
+        map.setTerrain({ 'source': 'mapbox-dem', 'exaggeration': 1.5 }); 
+          
+        map.addSource('aerisweather-layers', {
                 type: 'raster',
                 tiles: [
                     'https://maps1.aerisapi.com/drrm1Tihna8sxWcQM9C5D_nfMfFk66EBeo4I6IjJTbhynpoXReetwk8OxdusjG/lightning-strike-density:50,lightning-strikes:invert():scale-hsla(0.69,0,1,0,0.5,0,0,1)/{z}/{x}/{y}/current.png',
