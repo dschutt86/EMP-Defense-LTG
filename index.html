@@ -5,7 +5,8 @@
 	<script defer src="https://cdn.aerisapi.com/sdk/js/1.8.0/aerisweather.min.js"></script>
 	<link rel="stylesheet" href="https://cdn.aerisapi.com/sdk/js/1.8.0/aerisweather.css">
 	<style>
- 		#map {position: absolute; top: 0; bottom: 0; width: 100%;
+ 		#map {
+			position: absolute; top: 0; bottom: 0; width: 100%;
   		}
   	</style>
 </head>
@@ -22,12 +23,12 @@ window.addEventListener('load', () => {
 	aeris.apps().then((apps) => {
 		const app = new apps.InteractiveMapApp(document.getElementById('map'), {
             map: {
-                strategy: "google",
-                accessToken: "AIzaSyBSNO2r4u6KDQM2SuKdVi4In_AbWfH8tFE",
-                zoom: 4,
+                strategy: "mapbox",
+                accessToken: "pk.eyJ1IjoiZHNjaHV0dGVyODYiLCJhIjoiY2xpNWtiNzlhMDR5bDNsbXBrdHZqaTFsdSJ9.AFqJmapzjF4jgElf9E4E8g",
+                zoom: 4.10908506743856,
                 center: {
-                    lat: 38.6016,
-                    lon: -93.5498
+                    lat: 38.3713,
+                    lon: -93.3377
                 },
                 timeline: {
                     from: -7200,
@@ -48,6 +49,9 @@ window.addEventListener('load', () => {
                         },{
                             title: "Lightning All",
                             value: "lightning-all"
+                        },{
+                            title: "Stormcells",
+                            value: "stormcells"
                         },{
                             title: "Fires - Points",
                             value: "fires-obs-points"
