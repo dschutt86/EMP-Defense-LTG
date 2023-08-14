@@ -5,7 +5,7 @@
 	<script defer src="https://cdn.aerisapi.com/sdk/js/1.8.0/aerisweather.min.js"></script>
 	<link rel="stylesheet" href="https://cdn.aerisapi.com/sdk/js/1.8.0/aerisweather.css">
 	<style>
- 		#map { position: absolute; top: 0; bottom: 0; width: 100%;
+ 		#map {position: absolute; top: 0; bottom: 0; width: 100%;
   		}
   	</style>
 </head>
@@ -117,17 +117,6 @@ window.addEventListener('load', () => {
 
 			// select initial layers
 			app.map.addLayers(['lightning-strikes']);
-			// load in MapsGL sdk and set up relevant layer controls
-			aeris.mapsgl(app, {
-				version: '1.1.0',
-				layers: [{
-                        title: "Radar",
-                        value: "radar"
-                    }]
-			}).then(({controller, mapsgl }) => {
-				controller.addDataInspectorControl({ event: 'move'});
-				
-			});
 		});
 		
 		
