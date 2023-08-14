@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <title>EMP Lightning Defense</title>
+    <title>AerisWeather Map</title>
     <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
 
     <link href="https://api.tiles.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.css" rel="stylesheet" />
@@ -14,7 +14,7 @@
 
 </head>
 <body>
-        
+
     <div id="map"></div>
 
     <script>
@@ -31,10 +31,10 @@
             map.addSource('aerisweather-layers', {
                 type: 'raster',
                 tiles: [
-                    'https://maps1.aerisapi.com/drrm1Tihna8sxWcQM9C5D_nfMfFk66EBeo4I6IjJTbhynpoXReetwk8OxdusjG/lightning-strike-density,lightning-strikes/{z}/{x}/{y}/current.png',
-					'https://maps2.aerisapi.com/drrm1Tihna8sxWcQM9C5D_nfMfFk66EBeo4I6IjJTbhynpoXReetwk8OxdusjG/lightning-strike-density,lightning-strikes/{z}/{x}/{y}/current.png',
-					'https://maps3.aerisapi.com/drrm1Tihna8sxWcQM9C5D_nfMfFk66EBeo4I6IjJTbhynpoXReetwk8OxdusjG/lightning-strike-density,lightning-strikes/{z}/{x}/{y}/current.png',
-					'https://maps4.aerisapi.com/drrm1Tihna8sxWcQM9C5D_nfMfFk66EBeo4I6IjJTbhynpoXReetwk8OxdusjG/lightning-strike-density,lightning-strikes/{z}/{x}/{y}/current.png'
+                    'https://maps1.aerisapi.com/drrm1Tihna8sxWcQM9C5D_nfMfFk66EBeo4I6IjJTbhynpoXReetwk8OxdusjG/lightning-strike-density:50,lightning-strikes/{z}/{x}/{y}/current.png',
+					'https://maps2.aerisapi.com/drrm1Tihna8sxWcQM9C5D_nfMfFk66EBeo4I6IjJTbhynpoXReetwk8OxdusjG/lightning-strike-density:50,lightning-strikes/{z}/{x}/{y}/current.png',
+					'https://maps3.aerisapi.com/drrm1Tihna8sxWcQM9C5D_nfMfFk66EBeo4I6IjJTbhynpoXReetwk8OxdusjG/lightning-strike-density:50,lightning-strikes/{z}/{x}/{y}/current.png',
+					'https://maps4.aerisapi.com/drrm1Tihna8sxWcQM9C5D_nfMfFk66EBeo4I6IjJTbhynpoXReetwk8OxdusjG/lightning-strike-density:50,lightning-strikes/{z}/{x}/{y}/current.png'
                 ],
                 tileSize: 256,
                 attribution: '<a href="https://www.aerisweather.com/">AerisWeather</a>'
@@ -47,6 +47,8 @@
                 maxzoom: 22
             });
         });
+
+        
     </script>
 
 </body>
